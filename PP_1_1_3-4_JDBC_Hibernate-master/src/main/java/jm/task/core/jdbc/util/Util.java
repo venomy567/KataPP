@@ -23,11 +23,5 @@ public final class Util {
         }
         return connection;
     }
-//    public static Util creatUtil(){
-//        if (util == null) util = new Util();
-//        return util;
-//    }
-//    public static Connection getConnection() {
-//        return connection;
-//    }
+
 }
