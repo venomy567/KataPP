@@ -2,24 +2,32 @@ package jm.task.core.jdbc.util;
 
 import java.sql.*;
 
-public class Util {
-    private final String URL = "jdbc:mysql://localhost:3306/zadanie1";
-    private final String login = "root";
-    private final String password = "root";
-    private Connection connection = null;
+public final class Util {
+    private static final String URL = "jdbc:mysql://localhost:3306/zadanie1";
+    private static final String LOGIN = "root";
+    private static final String PASSWORD = "root";
 
-    public Util() {
+
+    private Util() {
+    }
+
+    public static Connection creatConnection(){
+        Connection connection;
         try {
             Driver driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);
-            connection = DriverManager.getConnection(URL, login, password);
+            connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
 
         } catch (SQLException e) {
-            System.out.println(e);
+            throw new RuntimeException();
         }
-
-    }
-    public Connection getConnection() {
         return connection;
     }
+//    public static Util creatUtil(){
+//        if (util == null) util = new Util();
+//        return util;
+//    }
+//    public static Connection getConnection() {
+//        return connection;
+//    }
 }

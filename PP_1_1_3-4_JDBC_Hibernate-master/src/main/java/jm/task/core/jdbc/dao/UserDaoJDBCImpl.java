@@ -9,9 +9,9 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    private Util util = new Util();
-    private Connection connection = util.getConnection();
-//    private Statement statement;
+
+    private final Connection connection = Util.creatConnection();
+
 
     public void createUsersTable() {
         try (Statement statement = connection.createStatement()) {
@@ -61,9 +61,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        try (Statement statement = connection.createStatement()) {
+        try (PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM newtable")) {
 
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM newtable");
+            ResultSet resultSet = pstmt.executeQuery();
 
             while (resultSet.next()) {
                 User user = new User();
