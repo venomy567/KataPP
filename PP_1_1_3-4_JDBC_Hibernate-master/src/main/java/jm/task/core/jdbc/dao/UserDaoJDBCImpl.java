@@ -9,9 +9,9 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
 
-    private Util util = new Util();
-    private Connection connection = util.getConnection();
-//    private Statement statement;
+
+    private final Connection connection = Util.creatUtil().getConnection();
+
 
     public void createUsersTable() {
         try (Statement statement = connection.createStatement()) {
